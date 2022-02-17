@@ -16,7 +16,6 @@ module.exports = class NoInstaJoin extends Plugin {
       const t = await getModule(m => m && m.default && m.default.transitionToInvite)
       const g = await getModule(m => m && m.findCodedLink)
       const a = await getModule(["getOnClick"])
-      const c = a.getOnClick
       inject("no-insta-join", a, "getOnClick", (e) => {
           let coded = g.findCodedLink(e[0])
           if (coded?.type == "INVITE") {
@@ -25,7 +24,6 @@ module.exports = class NoInstaJoin extends Plugin {
                   t.default.openNativeAppModal(coded.code, "INVITE_BROWSER")
               }
           }
-          return c(e)
       })
     }
 
